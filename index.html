@@ -1,0 +1,1204 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Para Yendimar ✨</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts con respaldos tipográficos elegantes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --cream: #FFFDF9;
+      --rose-soft: #FDEEF2;
+      --gold: #D4AF37;
+      --gold-light: #EBD282;
+      --wine: #6B2135;
+      --rose-dust: #B56576;
+      --ink: #3A262D;
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      min-height: 100%;
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 18% 12%, #FFFDF9 0%, #FDEEF2 48%, #F6E4D8 100%);
+      overflow-x: hidden;
+    }
+
+    .font-serif-editorial {
+      font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+    }
+
+    .font-script {
+      font-family: 'Great Vibes', Georgia, cursive;
+    }
+
+    /* Partículas flotantes y destellos */
+    #sparkle-canvas {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Transiciones suaves y orgánicas entre escenas */
+    .screen {
+      display: none;
+      opacity: 0;
+      transform: translateY(16px) scale(0.985);
+      transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1), transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+      position: relative;
+      z-index: 10;
+    }
+
+    .screen.active {
+      display: flex;
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    /* Levitación libre para los escudos (sin recuadros ni bordes) */
+    @keyframes floatSlowA {
+      0%, 100% { transform: translateY(0px) rotate(-1.5deg); }
+      50% { transform: translateY(-10px) rotate(1.5deg); }
+    }
+
+    @keyframes floatSlowB {
+      0%, 100% { transform: translateY(-4px) rotate(1.5deg); }
+      50% { transform: translateY(8px) rotate(-1.5deg); }
+    }
+
+    .crest-wrapper {
+      background: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
+      outline: none !important;
+      cursor: pointer;
+      user-select: none;
+      touch-action: manipulation;
+    }
+
+    .crest-svg {
+      filter: drop-shadow(0 12px 18px rgba(58, 38, 45, 0.22));
+      transition: transform 0.25s ease, filter 0.25s ease;
+    }
+
+    .crest-madrid-float {
+      animation: floatSlowA 3.8s ease-in-out infinite;
+    }
+
+    .crest-madrid-float:hover .crest-svg,
+    .crest-madrid-float:active .crest-svg {
+      transform: scale(1.08);
+      filter: drop-shadow(0 14px 26px rgba(212, 175, 55, 0.6));
+    }
+
+    .crest-barca-float {
+      animation: floatSlowB 3.4s ease-in-out infinite;
+      transition: left 0.24s cubic-bezier(0.18, 0.89, 0.32, 1.28), top 0.24s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+    }
+
+    /* Burbujas de frases futboleras */
+    @keyframes bubblePop {
+      0% { opacity: 0; transform: translate(-50%, 8px) scale(0.82); }
+      18% { opacity: 1; transform: translate(-50%, -6px) scale(1.03); }
+      82% { opacity: 1; transform: translate(-50%, -26px) scale(1); }
+      100% { opacity: 0; transform: translate(-50%, -42px) scale(0.92); }
+    }
+
+    .taunt-bubble {
+      position: absolute;
+      z-index: 40;
+      pointer-events: none;
+      white-space: nowrap;
+      animation: bubblePop 2.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    /* Regalo grande interactivo con flotación y brillo */
+    @keyframes giftFloat {
+      0%, 100% { transform: translateY(0px) rotate(-1deg) scale(1); }
+      50% { transform: translateY(-9px) rotate(1deg) scale(1.03); }
+    }
+
+    .big-gift-box {
+      animation: giftFloat 2.9s ease-in-out infinite;
+      transition: transform 0.25s ease, filter 0.25s ease;
+    }
+
+    .big-gift-box:hover {
+      filter: drop-shadow(0 18px 34px rgba(212, 175, 55, 0.45));
+    }
+
+    /* Pergamino elegante de la carta final */
+    .parchment {
+      background:
+        radial-gradient(ellipse at top left, rgba(255, 253, 249, 0.95), transparent 60%),
+        radial-gradient(ellipse at bottom right, rgba(226, 202, 168, 0.45), transparent 65%),
+        linear-gradient(165deg, #FCF6EA 0%, #F5E8D3 52%, #ECD9BD 100%);
+      box-shadow:
+        0 20px 45px -12px rgba(72, 34, 42, 0.22),
+        inset 0 0 38px rgba(182, 139, 78, 0.22),
+        0 0 0 1px rgba(212, 175, 55, 0.45);
+      position: relative;
+    }
+
+    .parchment::before {
+      content: "";
+      position: absolute;
+      inset: 8px;
+      border: 1px solid rgba(180, 134, 68, 0.34);
+      border-radius: 1rem;
+      pointer-events: none;
+    }
+
+    /* Ecualizador del botón musical */
+    @keyframes musicBar {
+      0%, 100% { height: 5px; }
+      50% { height: 15px; }
+    }
+
+    .music-bar {
+      width: 3px;
+      border-radius: 999px;
+      background-color: var(--wine);
+      transition: height 0.2s ease;
+    }
+
+    .music-playing .music-bar:nth-child(1) { animation: musicBar 0.85s ease-in-out infinite; }
+    .music-playing .music-bar:nth-child(2) { animation: musicBar 0.65s ease-in-out 0.2s infinite; }
+    .music-playing .music-bar:nth-child(3) { animation: musicBar 0.95s ease-in-out 0.35s infinite; }
+    .music-paused .music-bar { height: 5px !important; animation: none !important; }
+
+    /* Botones cálidos */
+    .btn-wine {
+      background: linear-gradient(135deg, #7C263D 0%, #591829 100%);
+      color: #FFFDF9;
+      box-shadow: 0 10px 24px -6px rgba(107, 33, 53, 0.45);
+      transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+    }
+    .btn-wine:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 28px -6px rgba(107, 33, 53, 0.55);
+      filter: brightness(1.06);
+    }
+    .btn-wine:active {
+      transform: translateY(0px) scale(0.98);
+    }
+
+    @keyframes softPulseGlow {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.38), 0 12px 28px -8px rgba(107, 33, 53, 0.4); }
+      50% { box-shadow: 0 0 0 10px rgba(212, 175, 55, 0), 0 16px 34px -8px rgba(107, 33, 53, 0.5); }
+    }
+    .btn-glow-reveal {
+      animation: softPulseGlow 2.4s infinite;
+    }
+
+    /* Confeti y destellos */
+    @keyframes confettiFall {
+      0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(105vh) rotate(720deg); opacity: 0; }
+    }
+    .confetti-piece {
+      position: fixed;
+      top: -20px;
+      z-index: 60;
+      pointer-events: none;
+      animation: confettiFall linear forwards;
+    }
+  </style>
+</head>
+<body class="antialiased selection:bg-[#b56576]/20 selection:text-[#6b2135]">
+
+  <!-- Lienzo de partículas doradas y destellos suaves -->
+  <canvas id="sparkle-canvas"></canvas>
+
+  <!-- Control flotante minimalista de sonido (esquina superior derecha, sin nombre de canción) -->
+  <header class="fixed top-3 right-3 sm:top-5 sm:right-5 z-50 flex items-center">
+    <button
+      id="music-toggle-btn"
+      type="button"
+      aria-label="Activar o silenciar sonido"
+      class="w-10 h-10 rounded-full bg-[#FFFDF9]/90 backdrop-blur-md border border-[#D4AF37]/45 shadow-md hover:shadow-lg transition-all flex items-center justify-center text-[#591829] cursor-pointer"
+    >
+      <div id="music-bars" class="flex items-end gap-[3px] h-3.5 music-paused">
+        <span class="music-bar"></span>
+        <span class="music-bar"></span>
+        <span class="music-bar"></span>
+      </div>
+    </button>
+  </header>
+
+  <!-- Contenedor principal centrado -->
+  <main class="relative z-10 min-h-screen w-full max-w-3xl mx-auto px-4 sm:px-6 py-14 sm:py-16 flex flex-col justify-center">
+
+    <!-- =========================================================
+         PORTADA EXCLUSIVA PARA YENDIMAR ("BONITA")
+    ========================================================== -->
+    <section id="screen-1" class="screen active flex-col items-center text-center">
+      <div class="relative w-full max-w-xl bg-[#FFFDF9]/88 backdrop-blur-md border border-[#D4AF37]/45 rounded-[2rem] p-8 sm:p-12 shadow-[0_24px_60px_rgba(92,38,50,0.13)] overflow-hidden">
+        <div class="pointer-events-none absolute -top-24 left-1/2 -translate-x-1/2 w-80 h-48 rounded-full bg-[#F5DCA8]/45 blur-3xl"></div>
+
+        <p class="font-script text-3xl sm:text-4xl text-[#B56576] mb-3 relative">
+          Para Yendimar✨
+        </p>
+
+        <h1 class="font-serif-editorial text-3xl sm:text-5xl font-semibold text-[#591829] leading-[1.18] tracking-tight mb-5 relative">
+          Regalo exclusivo para los ojos más hermosos de este mundo.
+        </h1>
+
+        <div class="flex items-center justify-center gap-3 my-6">
+          <span class="w-12 h-[1px] bg-gradient-to-r from-transparent to-[#D4AF37]"></span>
+          <span class="text-[#D4AF37] text-sm">✦</span>
+          <span class="w-12 h-[1px] bg-gradient-to-l from-transparent to-[#D4AF37]"></span>
+        </div>
+
+        <p class="text-sm sm:text-base text-[#4F3238] leading-relaxed mb-8 max-w-md mx-auto">
+          Hay personas cuya presencia ilumina cualquier lugar con solo mirar, y tu<span class="font-semibold text-[#591829]">YENDIMAR</span> eres una de ellas. Preparé este detalle pensando en ti, <span class="italic font-medium text-[#6B2135]">Bonita</span>.
+        </p>
+
+        <button
+          id="btn-start"
+          type="button"
+          class="btn-wine btn-glow-reveal px-8 py-4 rounded-full font-medium text-sm sm:text-base inline-flex items-center gap-2.5 cursor-pointer"
+        >
+          <span>Entrar✨</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         DUELO REAL MADRID VS. FC BARCELONA
+    ========================================================== -->
+    <section id="screen-2" class="screen flex-col items-center text-center">
+      <div class="w-full max-w-2xl">
+        <p class="font-script text-3xl text-[#B56576] mb-1">
+          Bonita, antes de seguir… hay una pequeña prueba.
+        </p>
+        <h2 class="font-serif-editorial text-2xl sm:text-4xl font-semibold text-[#591829] mb-2">
+          Elige tu escudo ⚽
+        </h2>
+        <p class="text-sm sm:text-base text-[#5A3B42] mb-4">
+          Toca el escudo que representa la verdadera grandeza: te recomiendo el Madrid 🤣
+        </p>
+
+        <!-- Arena libre donde flotan los 2 escudos originales SIN recuadros ni bordes -->
+        <div
+          id="duel-arena"
+          class="relative w-full h-[330px] sm:h-[360px] mx-auto select-none overflow-visible"
+        >
+          <!-- ESCUDO OFICIAL REAL MADRID CF (Flotando libre) -->
+          <button
+            id="crest-madrid"
+            type="button"
+            aria-label="Escudo oficial del Real Madrid"
+            class="crest-wrapper crest-madrid-float absolute left-[12%] sm:left-[21%] top-[22%] w-28 h-36 sm:w-36 sm:h-44 flex items-center justify-center p-0"
+          >
+            <img
+              src="https://upload.wikimedia.org/wikipedia/en/5/56/Real_Madrid_CF.svg"
+              alt="Escudo Real Madrid CF"
+              class="crest-svg w-full h-full object-contain pointer-events-none"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
+            />
+            <!-- Respaldo SVG vectorial limpio del Real Madrid -->
+            <svg style="display:none" viewBox="0 0 220 290" class="crest-svg w-full h-full overflow-visible" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="rmGold" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#f7dc88"/>
+                  <stop offset="50%" stop-color="#d4a238"/>
+                  <stop offset="100%" stop-color="#9e7119"/>
+                </linearGradient>
+                <linearGradient id="rmBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#1c4fa1"/>
+                  <stop offset="100%" stop-color="#0d2b63"/>
+                </linearGradient>
+                <radialGradient id="rmWhite" cx="35%" cy="30%" r="70%">
+                  <stop offset="0%" stop-color="#ffffff"/>
+                  <stop offset="100%" stop-color="#eef2f7"/>
+                </radialGradient>
+                <clipPath id="rmInnerClip">
+                  <circle cx="110" cy="176" r="82"/>
+                </clipPath>
+              </defs>
+              <g transform="translate(52, 8)">
+                <rect x="55" y="0" width="6" height="15" rx="1.5" fill="url(#rmGold)"/>
+                <rect x="50.5" y="4.5" width="15" height="5" rx="1.5" fill="url(#rmGold)"/>
+                <circle cx="58" cy="17" r="5" fill="url(#rmGold)"/>
+                <path d="M22,48 C22,25 94,25 94,48 Z" fill="#b81d24"/>
+                <path d="M20,52 C14,32 38,20 58,21 C78,20 102,32 96,52" fill="none" stroke="url(#rmGold)" stroke-width="5.5" stroke-linecap="round"/>
+                <path d="M36,52 C34,34 46,22 58,21 C70,22 82,34 80,52" fill="none" stroke="url(#rmGold)" stroke-width="4.5" stroke-linecap="round"/>
+                <line x1="58" y1="21" x2="58" y2="52" stroke="url(#rmGold)" stroke-width="4.5"/>
+                <rect x="18" y="49" width="80" height="12" rx="4" fill="url(#rmGold)" stroke="#8a6012" stroke-width="1"/>
+              </g>
+              <circle cx="110" cy="176" r="96" fill="url(#rmGold)" stroke="#8a6012" stroke-width="2"/>
+              <circle cx="110" cy="176" r="84" fill="url(#rmWhite)" stroke="#b38424" stroke-width="2"/>
+              <g clip-path="url(#rmInnerClip)">
+                <polygon points="35,105 68,105 185,247 152,247" fill="url(#rmBlue)"/>
+                <path d="M142,135 A46,46 0 1,0 142,217" fill="none" stroke="url(#rmGold)" stroke-width="11" stroke-linecap="round"/>
+                <path d="M110,112 L110,240 M96,115 L126,115 M98,174 L124,174" stroke="url(#rmGold)" stroke-width="10" stroke-linecap="round"/>
+                <path d="M62,212 L62,144 L110,188 L158,144 L158,212" fill="none" stroke="url(#rmGold)" stroke-width="10.5" stroke-linejoin="round" stroke-linecap="round"/>
+              </g>
+            </svg>
+          </button>
+
+          <!-- ESCUDO OFICIAL FC BARCELONA (Flotando libre, esquiva el dedo/cursor) -->
+          <button
+            id="crest-barca"
+            type="button"
+            aria-label="Escudo oficial del FC Barcelona"
+            style="left: 58%; top: 25%;"
+            class="crest-wrapper crest-barca-float absolute w-28 h-34 sm:w-36 sm:h-40 flex items-center justify-center p-0"
+          >
+            <img
+              src="https://upload.wikimedia.org/wikipedia/en/4/47/FC_Barcelona_%28crest%29.svg"
+              alt="Escudo FC Barcelona"
+              class="crest-svg w-full h-full object-contain pointer-events-none"
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
+            />
+            <!-- Respaldo SVG vectorial limpio del FC Barcelona -->
+            <svg style="display:none" viewBox="0 0 220 245" class="crest-svg w-full h-full overflow-visible" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="fcbGold" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#ffe169"/>
+                  <stop offset="50%" stop-color="#e5b324"/>
+                  <stop offset="100%" stop-color="#b5830d"/>
+                </linearGradient>
+                <clipPath id="fcbShieldClip">
+                  <path d="M24,26 Q65,42 110,16 Q155,42 196,26 L190,94 C205,112 204,136 190,152 C185,192 145,212 110,232 C75,212 35,192 30,152 C16,136 15,112 30,94 Z"/>
+                </clipPath>
+              </defs>
+              <path d="M24,26 Q65,42 110,16 Q155,42 196,26 L190,94 C205,112 204,136 190,152 C185,192 145,212 110,232 C75,212 35,192 30,152 C16,136 15,112 30,94 Z" fill="url(#fcbGold)" stroke="#3a2328" stroke-width="3.5" stroke-linejoin="round"/>
+              <g clip-path="url(#fcbShieldClip)">
+                <rect x="15" y="15" width="95" height="92" fill="#ffffff"/>
+                <rect x="55" y="15" width="16" height="92" fill="#d9232e"/>
+                <rect x="15" y="55" width="95" height="16" fill="#d9232e"/>
+                <rect x="110" y="15" width="95" height="92" fill="#ffdf33"/>
+                <rect x="121" y="15" width="10" height="92" fill="#d9232e"/>
+                <rect x="142" y="15" width="10" height="92" fill="#d9232e"/>
+                <rect x="163" y="15" width="10" height="92" fill="#d9232e"/>
+                <rect x="184" y="15" width="10" height="92" fill="#d9232e"/>
+                <rect x="15" y="132" width="195" height="105" fill="#004d98"/>
+                <rect x="40" y="132" width="23" height="105" fill="#a50044"/>
+                <rect x="86" y="132" width="23" height="105" fill="#a50044"/>
+                <rect x="132" y="132" width="23" height="105" fill="#a50044"/>
+                <rect x="178" y="132" width="23" height="105" fill="#a50044"/>
+                <line x1="110" y1="15" x2="110" y2="107" stroke="#231f20" stroke-width="3.5"/>
+                <rect x="15" y="106" width="195" height="28" fill="#f5c63c" stroke="#231f20" stroke-width="3"/>
+                <text x="110" y="126" text-anchor="middle" font-family="Plus Jakarta Sans, Arial, sans-serif" font-weight="900" font-size="21" letter-spacing="2" fill="#1a1a1a">FCB</text>
+                <circle cx="110" cy="182" r="22" fill="#f7cb45" stroke="#231f20" stroke-width="2.5"/>
+              </g>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Mensaje cómplice al elegir el Real Madrid -->
+        <div
+          id="madrid-success-box"
+          class="hidden mt-2 bg-[#FFFDF9]/95 backdrop-blur-md border border-[#D4AF37]/60 rounded-3xl p-6 sm:p-7 shadow-xl max-w-md mx-auto transition-all"
+        >
+          <p class="font-serif-editorial text-xl sm:text-2xl font-semibold text-[#6B2135] leading-snug mb-5">
+            “Lo siento Bonita, sé que no te gusta, pero la realidad es que te queda mejor el blanco 🤍👑”
+          </p>
+          <button
+            id="btn-to-screen-3"
+            type="button"
+            class="btn-wine px-8 py-3 rounded-full text-sm font-medium inline-flex items-center gap-2 cursor-pointer"
+          >
+            <span>Seguir✨</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         PANTALLA DE ÁNIMO ANTES DEL REGALO
+    ========================================================== -->
+    <section id="screen-3" class="screen flex-col items-center text-center">
+      <div class="w-full max-w-xl bg-[#FFFDF9]/90 backdrop-blur-md border border-[#D4AF37]/40 rounded-[2rem] p-7 sm:p-10 shadow-[0_20px_50px_rgba(92,38,50,0.12)]">
+        <p class="font-script text-3xl text-[#B56576] mb-1">
+          Antes de seguír avanzando
+        </p>
+        <h2 class="font-serif-editorial text-2xl sm:text-4xl font-semibold text-[#591829] mb-6">
+          Cuéntame ¿cómo andas hoy?
+        </h2>
+
+        <!-- 3 Botones de estado de ánimo -->
+        <div class="grid grid-cols-1 gap-3.5 mb-6">
+          <button
+            type="button"
+            data-mood="pelear"
+            class="mood-btn w-full py-4 px-5 rounded-2xl bg-gradient-to-r from-[#FFF8F5] to-[#F9EBE6] border border-[#B56576]/40 hover:border-[#6B2135] text-[#591829] font-medium text-sm sm:text-base shadow-sm hover:shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer"
+          >
+            <span>🥊 Toca si quieres pelear</span>
+          </button>
+
+          <button
+            type="button"
+            data-mood="loquita"
+            class="mood-btn w-full py-4 px-5 rounded-2xl bg-gradient-to-r from-[#FFFAF2] to-[#F8EEDB] border border-[#D4AF37]/45 hover:border-[#9E7119] text-[#591829] font-medium text-sm sm:text-base shadow-sm hover:shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer"
+          >
+            <span>🤪 Toca si estás loquita</span>
+          </button>
+
+          <button
+            type="button"
+            data-mood="feliz"
+            class="mood-btn w-full py-4 px-5 rounded-2xl bg-gradient-to-r from-[#FFF9FB] to-[#F6E8EE] border border-[#B56576]/40 hover:border-[#6B2135] text-[#591829] font-medium text-sm sm:text-base shadow-sm hover:shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer"
+          >
+            <span>😊 Toca si te sientes Feliz</span>
+          </button>
+        </div>
+
+        <!-- Respuesta cálida / juguetona -->
+        <div
+          id="mood-response-card"
+          class="hidden rounded-2xl bg-[#F8EFE5] border border-[#D4AF37]/45 p-5 sm:p-6 mb-6 text-center transition-all"
+        >
+          <p id="mood-response-text" class="font-serif-editorial text-lg sm:text-xl text-[#4A2E34] leading-relaxed"></p>
+        </div>
+
+        <!-- SOLO aparece cuando toca "😊 Toca si te sientes feliz hoy" -->
+        <div id="mood-next-wrapper" class="hidden">
+          <button
+            id="btn-to-screen-4"
+            type="button"
+            class="btn-wine btn-glow-reveal px-8 py-3.5 rounded-full text-sm sm:text-base font-medium inline-flex items-center gap-2 cursor-pointer"
+          >
+            <span>Abrir</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         4 DETALLES ESPECIALES -> LUEGO REGALO GRANDE INTERACTIVO
+    ========================================================== -->
+    <section id="screen-4" class="screen flex-col items-center text-center">
+      <div class="w-full max-w-2xl bg-[#FFFDF9]/90 backdrop-blur-md border border-[#D4AF37]/40 rounded-[2rem] p-6 sm:p-10 shadow-[0_20px_50px_rgba(92,38,50,0.12)]">
+        <p class="font-script text-3xl text-[#B56576] mb-1">
+          Bonita espera, aún falta…
+        </p>
+        <h2 class="font-serif-editorial text-2xl sm:text-3xl font-semibold text-[#591829] leading-snug mb-2">
+          Quiero expresarte algunos detalles...
+        </h2>
+        <p class="text-xs sm:text-sm text-[#6B4950] mb-6">
+          Toca cada símbolo para descubrir lo que quiero decirte:
+        </p>
+
+        <!-- 4 Símbolos interactivos -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-6">
+          <!-- 1. Micrófono (Tu Talento) -->
+          <button
+            type="button"
+            data-symbol="microfono"
+            class="symbol-card group relative flex flex-col items-center p-4 rounded-2xl bg-[#FFFDF9] border border-[#D4AF37]/45 hover:border-[#6B2135] hover:shadow-md transition-all cursor-pointer"
+          >
+            <span class="symbol-check hidden absolute top-2 right-2.5 text-xs text-[#1E7E48] font-bold">✓</span>
+            <span class="text-3xl mb-2 group-hover:scale-110 transition-transform">🎤</span>
+            <span class="font-serif-editorial font-semibold text-base text-[#591829]">Micrófono</span>
+            <span class="text-[11px] text-[#8A6870]">Tu Talento</span>
+          </button>
+
+          <!-- 2. Chocolate (Tu Dulzura) -->
+          <button
+            type="button"
+            data-symbol="chocolate"
+            class="symbol-card group relative flex flex-col items-center p-4 rounded-2xl bg-[#FFFDF9] border border-[#D4AF37]/45 hover:border-[#6B2135] hover:shadow-md transition-all cursor-pointer"
+          >
+            <span class="symbol-check hidden absolute top-2 right-2.5 text-xs text-[#1E7E48] font-bold">✓</span>
+            <span class="text-3xl mb-2 group-hover:scale-110 transition-transform">🍫</span>
+            <span class="font-serif-editorial font-semibold text-base text-[#591829]">Chocolate</span>
+            <span class="text-[11px] text-[#8A6870]">Tu Dulzura</span>
+          </button>
+
+          <!-- 3. Suiza (Tus Sueños) -->
+          <button
+            type="button"
+            data-symbol="suiza"
+            class="symbol-card group relative flex flex-col items-center p-4 rounded-2xl bg-[#FFFDF9] border border-[#D4AF37]/45 hover:border-[#6B2135] hover:shadow-md transition-all cursor-pointer"
+          >
+            <span class="symbol-check hidden absolute top-2 right-2.5 text-xs text-[#1E7E48] font-bold">✓</span>
+            <span class="text-3xl mb-2 group-hover:scale-110 transition-transform">🇨🇭</span>
+            <span class="font-serif-editorial font-semibold text-base text-[#591829]">Suiza</span>
+            <span class="text-[11px] text-[#8A6870]">Tus Sueños</span>
+          </button>
+
+          <!-- 4. Rosario (Una Bendición) -->
+          <button
+            type="button"
+            data-symbol="rosario"
+            class="symbol-card group relative flex flex-col items-center p-4 rounded-2xl bg-[#FFFDF9] border border-[#D4AF37]/45 hover:border-[#6B2135] hover:shadow-md transition-all cursor-pointer"
+          >
+            <span class="symbol-check hidden absolute top-2 right-2.5 text-xs text-[#1E7E48] font-bold">✓</span>
+            <span class="text-3xl mb-2 group-hover:scale-110 transition-transform">📿</span>
+            <span class="font-serif-editorial font-semibold text-base text-[#591829]">Rosario</span>
+            <span class="text-[11px] text-[#8A6870]">Una Bendición</span>
+          </button>
+        </div>
+
+        <!-- Panel de lectura del detalle seleccionado -->
+        <div
+          id="symbol-detail-panel"
+          class="rounded-2xl bg-gradient-to-br from-[#FBF2E8] to-[#F5E5D6] border border-[#D4AF37]/45 p-5 sm:p-6 text-left transition-all"
+        >
+          <div class="flex items-center gap-2 mb-2">
+            <span id="symbol-detail-badge" class="px-3 py-0.5 rounded-full bg-[#6B2135] text-[#FFFDF9] text-[11px] font-medium">
+              Toca uno de los cuatro detalles
+            </span>
+          </div>
+          <h3 id="symbol-detail-title" class="font-serif-editorial text-xl sm:text-2xl font-semibold text-[#591829] mb-1.5">
+            Cada detalle guarda algo especial de ti
+          </h3>
+          <p id="symbol-detail-text" class="text-sm sm:text-base text-[#4A2E34] leading-relaxed">
+            Pulsa el Micrófono, el Chocolate, Suiza o el Rosario. Y descubrirás algo .
+          </p>
+        </div>
+
+        <!-- Regalo grande interactivo tras descubrir los 4 detalles -->
+        <div id="final-gift-reveal" class="hidden mt-8 pt-6 border-t border-[#D4AF37]/30 flex-col items-center">
+          <p class="font-serif-editorial italic text-lg sm:text-xl text-[#6B2135] mb-3">
+            Ya descubriste los cuatro detalles, Bonita… ahora toca el regalo:
+          </p>
+
+          <button
+            id="btn-big-gift"
+            type="button"
+            aria-label="Abrir regalo grande"
+            class="big-gift-box group relative flex flex-col items-center justify-center px-8 py-5 rounded-3xl bg-gradient-to-br from-[#FFFDF9] via-[#FDF2E3] to-[#F6E2C8] border-2 border-[#D4AF37] shadow-xl cursor-pointer"
+          >
+            <!-- Ilustración SVG de regalo grande con brillo y lazo dorado -->
+            <svg viewBox="0 0 140 140" class="w-28 h-28 sm:w-32 sm:h-32 mb-2 overflow-visible" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="giftBodyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#8B2B45"/>
+                  <stop offset="100%" stop-color="#591829"/>
+                </linearGradient>
+                <linearGradient id="giftLidGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#9E3451"/>
+                  <stop offset="100%" stop-color="#6B2135"/>
+                </linearGradient>
+                <linearGradient id="ribbonGoldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#F7DC88"/>
+                  <stop offset="50%" stop-color="#D4AF37"/>
+                  <stop offset="100%" stop-color="#9E7119"/>
+                </linearGradient>
+              </defs>
+              <!-- Destellos alrededor -->
+              <circle cx="20" cy="30" r="3" fill="#D4AF37"/>
+              <circle cx="122" cy="26" r="3.5" fill="#EBD282"/>
+              <circle cx="126" cy="96" r="2.5" fill="#B56576"/>
+              <!-- Lazo superior -->
+              <path d="M70,42 C54,18 28,22 36,38 C42,48 60,44 70,42 Z" fill="url(#ribbonGoldGrad)" stroke="#8A6012" stroke-width="1.5"/>
+              <path d="M70,42 C86,18 112,22 104,38 C98,48 80,44 70,42 Z" fill="url(#ribbonGoldGrad)" stroke="#8A6012" stroke-width="1.5"/>
+              <circle cx="70" cy="42" r="6.5" fill="url(#ribbonGoldGrad)" stroke="#8A6012" stroke-width="1.5"/>
+              <!-- Caja inferior -->
+              <rect x="26" y="58" width="88" height="64" rx="10" fill="url(#giftBodyGrad)" stroke="#47101E" stroke-width="2"/>
+              <!-- Cinta vertical y horizontal en caja -->
+              <rect x="62" y="58" width="16" height="64" fill="url(#ribbonGoldGrad)"/>
+              <rect x="26" y="78" width="88" height="10" fill="url(#ribbonGoldGrad)" opacity="0.85"/>
+              <!-- Tapa -->
+              <rect x="20" y="42" width="100" height="20" rx="8" fill="url(#giftLidGrad)" stroke="#47101E" stroke-width="2"/>
+              <rect x="62" y="42" width="16" height="20" fill="url(#ribbonGoldGrad)"/>
+            </svg>
+
+            <span class="font-serif-editorial text-lg sm:text-xl font-semibold text-[#591829] group-hover:text-[#7C263D] transition-colors">
+              Toca🎁
+            </span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         CARTA FINAL EN PERGAMINO PARA YENDIMAR ("BONITA")
+    ========================================================== -->
+    <section id="screen-5" class="screen flex-col items-center text-center">
+      <div class="w-full max-w-2xl">
+        <article class="parchment w-full rounded-2xl sm:rounded-3xl p-7 sm:p-12 text-left">
+          <div class="flex items-center justify-between border-b border-[#B48644]/30 pb-3 mb-6">
+            <span class="text-xs uppercase tracking-[0.2em] text-[#8C5E24] font-semibold">
+              Para lo más lindo 😍
+            </span>
+            <span class="text-[#B48644] text-base">✦</span>
+          </div>
+
+          <h2 class="font-script text-4xl sm:text-5xl text-[#6B2135] mb-5">
+            Querida Yendimar
+          </h2>
+
+          <div
+            id="letter-body-display"
+            class="font-serif-editorial text-lg sm:text-xl text-[#3B231E] leading-relaxed space-y-4 whitespace-pre-line"
+          ></div>
+
+          <div class="mt-8 pt-5 border-t border-[#B48644]/25 flex flex-col sm:flex-row sm:items-end justify-between gap-3">
+            <div>
+              <p class="text-xs uppercase tracking-widest text-[#8C5E24] mb-1">Con sinceridad y admiración,</p>
+              <p id="letter-signature-display" class="font-script text-3xl sm:text-4xl text-[#6B2135]">
+                Un Feliz Cumpleaños Te Desea, David 😁
+              </p>
+            </div>
+            <div class="text-2xl select-none">🤍✨</div>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    /*************************************************************************
+     * 1. NAVEGACIÓN FLUIDA ENTRE ESCENAS
+     *************************************************************************/
+    let currentScreen = 1;
+
+    function goToScreen(num) {
+      const prevEl = document.getElementById(`screen-${currentScreen}`);
+      const nextEl = document.getElementById(`screen-${num}`);
+      if (!nextEl || currentScreen === num) return;
+
+      if (prevEl) {
+        prevEl.classList.remove('active');
+      }
+
+      currentScreen = num;
+      nextEl.classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    document.getElementById('btn-start').addEventListener('click', () => {
+      startMusicIfNeeded();
+      goToScreen(2);
+    });
+
+    /*************************************************************************
+     * 2. PARTÍCULAS DORADAS Y DESTELLOS FLOTANTES (CANVAS RESPONSIVO)
+     *************************************************************************/
+    (function initSparkleCanvas() {
+      const canvas = document.getElementById('sparkle-canvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      let width = 0;
+      let height = 0;
+      const particles = [];
+
+      function resizeCanvas() {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+      }
+
+      window.addEventListener('resize', resizeCanvas);
+      resizeCanvas();
+
+      const count = Math.min(42, Math.floor((width * height) / 24000) + 18);
+      for (let i = 0; i < count; i++) {
+        particles.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          r: Math.random() * 2.6 + 1.1,
+          vx: (Math.random() - 0.5) * 0.35,
+          vy: -(Math.random() * 0.45 + 0.15),
+          alpha: Math.random() * 0.55 + 0.2,
+          phase: Math.random() * Math.PI * 2,
+          isGold: Math.random() > 0.35
+        });
+      }
+
+      function animateParticles() {
+        ctx.clearRect(0, 0, width, height);
+        for (const p of particles) {
+          p.x += p.vx;
+          p.y += p.vy;
+          p.phase += 0.025;
+
+          if (p.y < -10) {
+            p.y = height + 10;
+            p.x = Math.random() * width;
+          }
+          if (p.x < -10) p.x = width + 10;
+          if (p.x > width + 10) p.x = -10;
+
+          const twinkle = p.alpha * (0.65 + 0.35 * Math.sin(p.phase));
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fillStyle = p.isGold
+            ? `rgba(212, 175, 55, ${twinkle.toFixed(3)})`
+            : `rgba(181, 101, 118, ${(twinkle * 0.75).toFixed(3)})`;
+          ctx.fill();
+        }
+        requestAnimationFrame(animateParticles);
+      }
+
+      animateParticles();
+    })();
+
+    /*************************************************************************
+     * 3. MÚSICA INSTRUMENTAL SUAVE ("JUST THE WAY YOU ARE" - BRUNO MARS)
+     *    Inicia automáticamente sin mostrar nombre de canción en pantalla.
+     *************************************************************************/
+    const musicToggleBtn = document.getElementById('music-toggle-btn');
+    const musicBarsEl = document.getElementById('music-bars');
+
+    let audioCtx = null;
+    let isMusicPlaying = false;
+    let melodyTimer = null;
+    let noteIndex = 0;
+    let stepCounter = 0;
+
+    // Frecuencias en Hz (Fa Mayor)
+    const NOTES = {
+      F3: 174.61, A3: 220.00, Bb3: 233.08, C4: 261.63, D4: 293.66,
+      E4: 329.63, F4: 349.23, G4: 392.00, A4: 440.00, Bb4: 466.16,
+      C5: 523.25, D5: 587.33, E5: 659.25, F5: 698.46, R: 0
+    };
+
+    // Arreglo instrumental suave en corcheas (108 BPM)
+    const BRUNO_MELODY = [
+      ['A4', 2], ['A4', 1], ['C5', 1], ['A4', 2], ['F4', 2],
+      ['A4', 1], ['C5', 1], ['A4', 2], ['F4', 2], ['R', 2],
+      ['A4', 1], ['A4', 1], ['Bb4', 1], ['A4', 1], ['G4', 1], ['F4', 1], ['G4', 2],
+      ['A4', 1], ['G4', 1], ['F4', 3], ['R', 3],
+
+      ['A4', 2], ['A4', 1], ['C5', 1], ['A4', 2], ['F4', 2],
+      ['A4', 1], ['C5', 1], ['A4', 2], ['F4', 2], ['R', 2],
+      ['A4', 1], ['A4', 1], ['Bb4', 1], ['A4', 1], ['G4', 1], ['F4', 1], ['G4', 2],
+      ['A4', 1], ['G4', 1], ['F4', 3], ['R', 3],
+
+      ['F4', 1], ['G4', 1], ['A4', 2], ['C5', 2], ['A4', 2],
+      ['C5', 2], ['D5', 2], ['C5', 4],
+      ['A4', 1], ['Bb4', 1], ['C5', 2], ['D5', 2], ['C5', 2],
+      ['Bb4', 2], ['A4', 2], ['G4', 4],
+
+      ['F4', 1], ['G4', 1], ['A4', 2], ['C5', 2], ['A4', 2],
+      ['C5', 2], ['D5', 2], ['C5', 2], ['A4', 2],
+      ['G4', 1], ['A4', 1], ['Bb4', 2], ['A4', 2], ['G4', 2],
+      ['F4', 6], ['R', 2]
+    ];
+
+    // Acordes cálidos de acompañamiento (F - Dm - Bb - F)
+    const CHORDS_BY_STEP = {
+      0: ['F3', 'A3', 'C4'],
+      16: ['D4', 'F4', 'A4'],
+      32: ['Bb3', 'D4', 'F4'],
+      48: ['F3', 'A3', 'C4'],
+      64: ['F3', 'A3', 'C4'],
+      80: ['D4', 'F4', 'A4'],
+      96: ['Bb3', 'D4', 'F4'],
+      112: ['F3', 'A3', 'C4']
+    };
+
+    function updateMusicUI() {
+      if (isMusicPlaying) {
+        musicBarsEl.classList.remove('music-paused');
+        musicBarsEl.classList.add('music-playing');
+        musicToggleBtn.setAttribute('aria-label', 'Silenciar sonido');
+      } else {
+        musicBarsEl.classList.remove('music-playing');
+        musicBarsEl.classList.add('music-paused');
+        musicToggleBtn.setAttribute('aria-label', 'Activar sonido');
+      }
+    }
+
+    function playBellTone(freq, durationSec, volume = 0.08) {
+      if (!audioCtx || freq <= 0) return;
+      try {
+        const now = audioCtx.currentTime;
+        const osc = audioCtx.createOscillator();
+        const overtone = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        const overGain = audioCtx.createGain();
+
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(freq, now);
+
+        overtone.type = 'triangle';
+        overtone.frequency.setValueAtTime(freq * 2, now);
+
+        gain.gain.setValueAtTime(0.0001, now);
+        gain.gain.exponentialRampToValueAtTime(volume, now + 0.02);
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + durationSec + 0.35);
+
+        overGain.gain.setValueAtTime(0.0001, now);
+        overGain.gain.exponentialRampToValueAtTime(volume * 0.22, now + 0.015);
+        overGain.gain.exponentialRampToValueAtTime(0.0001, now + durationSec * 0.6);
+
+        osc.connect(gain);
+        overtone.connect(overGain);
+        overGain.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        osc.start(now);
+        overtone.start(now);
+
+        const stopTime = now + durationSec + 0.4;
+        osc.stop(stopTime);
+        overtone.stop(stopTime);
+
+        osc.onended = () => {
+          osc.disconnect();
+          overtone.disconnect();
+          overGain.disconnect();
+          gain.disconnect();
+        };
+      } catch (err) {
+        // Silencio seguro si el contexto de audio está restringido
+      }
+    }
+
+    function scheduleNextBrunoNote() {
+      if (!isMusicPlaying) return;
+
+      const eighthSec = 60 / 108 / 2;
+      const [noteName, eighths] = BRUNO_MELODY[noteIndex % BRUNO_MELODY.length];
+      const durationSec = eighths * eighthSec;
+
+      const chordKey = stepCounter % 128;
+      if (CHORDS_BY_STEP[chordKey]) {
+        for (const cNote of CHORDS_BY_STEP[chordKey]) {
+          playBellTone(NOTES[cNote], eighthSec * 7.5, 0.028);
+        }
+      }
+
+      if (noteName !== 'R' && NOTES[noteName]) {
+        playBellTone(NOTES[noteName], durationSec, 0.085);
+      }
+
+      stepCounter += eighths;
+      noteIndex++;
+
+      melodyTimer = setTimeout(scheduleNextBrunoNote, durationSec * 1000);
+    }
+
+    function startMusic() {
+      if (isMusicPlaying) return;
+      try {
+        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+        if (!AudioContextClass) return;
+        if (!audioCtx) {
+          audioCtx = new AudioContextClass();
+        }
+        if (audioCtx.state === 'suspended') {
+          audioCtx.resume().then(() => {
+            if (audioCtx.state === 'running' && !isMusicPlaying) {
+              isMusicPlaying = true;
+              updateMusicUI();
+              scheduleNextBrunoNote();
+            }
+          }).catch(() => {});
+        }
+        if (audioCtx.state === 'running') {
+          isMusicPlaying = true;
+          updateMusicUI();
+          scheduleNextBrunoNote();
+        } else {
+          isMusicPlaying = false;
+          updateMusicUI();
+        }
+      } catch (err) {
+        isMusicPlaying = false;
+        updateMusicUI();
+      }
+    }
+
+    function stopMusic() {
+      isMusicPlaying = false;
+      if (melodyTimer) {
+        clearTimeout(melodyTimer);
+        melodyTimer = null;
+      }
+      updateMusicUI();
+    }
+
+    function startMusicIfNeeded() {
+      if (!isMusicPlaying) {
+        startMusic();
+      }
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      startMusicIfNeeded();
+    });
+    window.addEventListener('load', () => {
+      startMusicIfNeeded();
+    });
+
+    const unlockEvents = ['pointerdown', 'touchstart', 'click', 'mousemove', 'keydown'];
+    function handleInstantUnlock() {
+      startMusicIfNeeded();
+      if (isMusicPlaying) {
+        unlockEvents.forEach(evt => document.removeEventListener(evt, handleInstantUnlock));
+      }
+    }
+    unlockEvents.forEach(evt => {
+      document.addEventListener(evt, handleInstantUnlock, { passive: true });
+    });
+
+    musicToggleBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (isMusicPlaying) {
+        stopMusic();
+      } else {
+        startMusic();
+      }
+    });
+
+    /*************************************************************************
+     * 4. DUELO BARÇA VS. REAL MADRID
+     *************************************************************************/
+    const barcaTaunts = [
+      "Te queda bien la franela del Madrid 🤍",
+      "Yamal es un tronco 😂",
+      "Una Champions del Madrid vale más que todo el Barça 🏆",
+      "CR7 el GOAT 🐐",
+      "Cámbiate al Madrid 😉"
+    ];
+    let tauntIdx = 0;
+    let lastDodgeTime = 0;
+
+    const duelArena = document.getElementById('duel-arena');
+    const crestBarca = document.getElementById('crest-barca');
+    const crestMadrid = document.getElementById('crest-madrid');
+
+    function spawnTauntBubble(x, y, text) {
+      const bubble = document.createElement('div');
+      bubble.className = 'taunt-bubble px-3.5 py-1.5 rounded-full bg-[#591829] text-[#FFFDF9] text-xs sm:text-sm font-medium shadow-lg border border-[#EBD282]/65';
+      bubble.textContent = text;
+
+      const arenaWidth = duelArena.clientWidth;
+      const clampedX = Math.max(95, Math.min(arenaWidth - 95, x));
+      bubble.style.left = `${clampedX}px`;
+      bubble.style.top = `${Math.max(8, y - 14)}px`;
+      duelArena.appendChild(bubble);
+
+      setTimeout(() => {
+        bubble.remove();
+      }, 2450);
+    }
+
+    function dodgeBarca(e) {
+      if (e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+      startMusicIfNeeded();
+
+      const now = Date.now();
+      if (now - lastDodgeTime < 130) return;
+      lastDodgeTime = now;
+
+      const arenaRect = duelArena.getBoundingClientRect();
+      const barcaRect = crestBarca.getBoundingClientRect();
+      const madridRect = crestMadrid.getBoundingClientRect();
+
+      const oldCenterX = (barcaRect.left - arenaRect.left) + barcaRect.width / 2;
+      const oldTopY = barcaRect.top - arenaRect.top;
+
+      const phrase = barcaTaunts[tauntIdx % barcaTaunts.length];
+      tauntIdx++;
+      spawnTauntBubble(oldCenterX, oldTopY, phrase);
+
+      const viewportMargin = 14;
+      const minAllowedLeft = Math.max(4, viewportMargin - arenaRect.left);
+      const maxAllowedLeft = Math.min(
+        arenaRect.width - barcaRect.width - 4,
+        window.innerWidth - arenaRect.left - barcaRect.width - viewportMargin
+      );
+      const minAllowedTop = 10;
+      const maxAllowedTop = Math.max(24, arenaRect.height - barcaRect.height - 10);
+
+      let newX = minAllowedLeft;
+      let newY = minAllowedTop;
+      let attempts = 0;
+
+      const madridRelX = madridRect.left - arenaRect.left;
+      const madridRelY = madridRect.top - arenaRect.top;
+
+      do {
+        newX = minAllowedLeft + Math.random() * Math.max(10, maxAllowedLeft - minAllowedLeft);
+        newY = minAllowedTop + Math.random() * Math.max(10, maxAllowedTop - minAllowedTop);
+        const dist = Math.hypot(newX - madridRelX, newY - madridRelY);
+        if (dist > barcaRect.width * 0.95) break;
+        attempts++;
+      } while (attempts < 18);
+
+      crestBarca.style.left = `${newX}px`;
+      crestBarca.style.top = `${newY}px`;
+    }
+
+    ['mouseenter', 'touchstart', 'click'].forEach(evt => {
+      crestBarca.addEventListener(evt, dodgeBarca, { passive: false });
+    });
+
+    function launchCelebrationSparkles() {
+      const colors = ['#FFFFFF', '#EBD282', '#D4AF37', '#FDEEF2', '#B56576'];
+      for (let i = 0; i < 48; i++) {
+        const piece = document.createElement('div');
+        piece.className = 'confetti-piece rounded-sm';
+        piece.style.left = `${Math.random() * 100}vw`;
+        piece.style.width = `${Math.random() * 8 + 6}px`;
+        piece.style.height = `${Math.random() * 10 + 6}px`;
+        piece.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        piece.style.animationDuration = `${Math.random() * 1.8 + 1.8}s`;
+        piece.style.animationDelay = `${Math.random() * 0.35}s`;
+        document.body.appendChild(piece);
+        setTimeout(() => piece.remove(), 3800);
+      }
+    }
+
+    crestMadrid.addEventListener('click', () => {
+      startMusicIfNeeded();
+      launchCelebrationSparkles();
+      const box = document.getElementById('madrid-success-box');
+      box.classList.remove('hidden');
+      box.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+
+    document.getElementById('btn-to-screen-3').addEventListener('click', () => {
+      goToScreen(3);
+    });
+
+    /*************************************************************************
+     * 5. ESTADO DE ÁNIMO DE BONITA (SOLO "FELIZ HOY" ABRE EL REGALO)
+     *************************************************************************/
+    const moodData = {
+      pelear: {
+        allowGift: false,
+        text: "Hoy no hay pelea que valga, porque primero yo siempre tengo la razón y segundo tienes demasiado encanto para andar brava. Respira hondo y prueba otra opción 😉✨"
+      },
+      loquita: {
+        allowGift: false,
+        text: "Esa chispa tan auténtica y ocurrente es parte de lo que te hace única, pero por hoy necesito que estés cuerda por un momento 🤪"
+      },
+      feliz: {
+        allowGift: true,
+        text: "¡Asi me encanta Verte, FELIZ! Con esa sonrisa que ilumina todo ☀️💛"
+      }
+    };
+
+    document.querySelectorAll('.mood-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const key = btn.getAttribute('data-mood');
+        const info = moodData[key];
+        if (!info) return;
+
+        document.querySelectorAll('.mood-btn').forEach(b => {
+          b.classList.remove('ring-2', 'ring-[#6B2135]');
+        });
+        btn.classList.add('ring-2', 'ring-[#6B2135]');
+
+        const card = document.getElementById('mood-response-card');
+        document.getElementById('mood-response-text').textContent = info.text;
+        card.classList.remove('hidden');
+
+        const nextWrapper = document.getElementById('mood-next-wrapper');
+        if (info.allowGift) {
+          nextWrapper.classList.remove('hidden');
+          launchCelebrationSparkles();
+        } else {
+          nextWrapper.classList.add('hidden');
+        }
+      });
+    });
+
+    document.getElementById('btn-to-screen-4').addEventListener('click', () => {
+      goToScreen(4);
+    });
+
+    /*************************************************************************
+     * 6. LOS 4 DETALLES ESPECIALES -> REGALO GRANDE -> CARTA EN PERGAMINO
+     *************************************************************************/
+    const symbolsData = {
+      microfono: {
+        badge: "🎤 Micrófono · Tu Talento",
+        title: "El arte y la expresión única",
+        text: "Tienes un talento muy especial. Tu voz (la cual ya sabes que me encanta) y la naturalidad con la que te expresas hacen que destaques con luz propia."
+      },
+      chocolate: {
+        badge: "🍫 Chocolate · Tu Dulzura",
+        title: "Calidez genuina",
+        text: "Detrás de ese carácter auténtico se que hay un corazón dulce y noble, Bonita. Una ternura sincera que le alegra el día a cualquiera."
+      },
+      suiza: {
+        badge: "🇨🇭 Suiza · Tus Sueños",
+        title: "La de los gustos CAROS ",
+        text: "Bonita, sigue con esas ganas de crecer, conocer lugares extraordinarios y cumplir cada sueño que te propongas. Tienes todo para llegar muy lejos."
+      },
+      rosario: {
+        badge: "📿 Rosario · Dios sobre todo",
+        title: "Tú fe",
+        text: "Deseo que Dios siempre cuide sus pasos, proteja tú  corazón y bendiga cada etapa de tu camino. Sabes que Él por sobre todo Te Ama Primero"
+      }
+    };
+
+    const discoveredSymbols = new Set();
+
+    document.querySelectorAll('.symbol-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const key = card.getAttribute('data-symbol');
+        const data = symbolsData[key];
+        if (!data) return;
+
+        discoveredSymbols.add(key);
+
+        card.classList.add('bg-[#F7ECE0]', 'border-[#6B2135]');
+        const check = card.querySelector('.symbol-check');
+        if (check) check.classList.remove('hidden');
+
+        document.getElementById('symbol-detail-badge').textContent = data.badge;
+        document.getElementById('symbol-detail-title').textContent = data.title;
+        document.getElementById('symbol-detail-text').textContent = data.text;
+
+        if (discoveredSymbols.size === 4) {
+          const giftReveal = document.getElementById('final-gift-reveal');
+          if (giftReveal.classList.contains('hidden')) {
+            giftReveal.classList.remove('hidden');
+            giftReveal.classList.add('flex');
+            launchCelebrationSparkles();
+          }
+        }
+      });
+    });
+
+    document.getElementById('btn-big-gift').addEventListener('click', () => {
+      launchCelebrationSparkles();
+      goToScreen(5);
+    });
+
+    /*************************************************************************
+     * 7. CARTA FINAL EN PERGAMINO
+     *************************************************************************/
+    const DEFAULT_LETTER = `Quería hacerte algo diferente, algo genuino, desde el corazón y que al abrirlo te sacara al menos una sonrisa, asi de linda como la tuya.
+
+A veces los días pasan demasiado rápido y uno olvida decir en voz alta lo valiosas que son ciertas personas. Hoy quiero decírtelo con total sinceridad. Si hoy me atrevo a hacer esto, es por lo que eres, más allá de lo podría sentir.
+
+Bonita, dentro de lo poco que hemos logrado interactuar he descubierto cosas interesantes. Sé que muchas veces me dejo llevar, por esos ojos tan hermosos que tienes, por el gusto o por el sentimiento. 
+Pero sin duda alguna, nunca me habría acercado a tal punto, si no me hubiera movido tu personalidad y tan diversas cualidades que tienes. 
+
+Ojalá nunca olvides lo mucho que vales, YENDIMAR, ni todo lo maravilloso que mereces alcanzar en este mundo. 
+
+En este pequeño y sencillo presente, quise expresar de manera respetuosa y genuina ese cúmulo de cosas que admiro de ti y cómo te ven por ahora mis ojos. 
+
+Dios y la Virgencita te acompañen, disfruta, vive y sé feliz...`;
+
+    const DEFAULT_SIGNATURE = "Un Feliz Cumpleaños Te Desea, David 😁";
+
+    document.getElementById('letter-body-display').textContent = DEFAULT_LETTER;
+    document.getElementById('letter-signature-display').textContent = DEFAULT_SIGNATURE;
+  </script>
+</body>
+</html>
